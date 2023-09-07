@@ -27,12 +27,12 @@ export function getChat(): void {
 /**
  * @transaction
  */
-export function writeMessage(messageText: string, senderName: string): void {
+export function writeMessage(input: ChatMessage): void {
 
     const newMessage: ChatMessage = {
-        sender: senderName,
-        message: messageText,
-        timestamp: 0
+        sender: input.sender,
+        message: input.message,
+        timestamp: input.timestamp
     }
 
     const chatTable = Ledger.getTable(chatRoomName);
@@ -56,14 +56,14 @@ export function writeMessage(messageText: string, senderName: string): void {
 /**
  * @transaction
  */
-// export function clearChat(): void {
+export function clearChat(): void {
 
-//     const chatTable = Ledger.getTable(chatRoomName);
-//     chatTable.set('messages', JSON.stringify<ChatMessage[]>([]));
+    const chatTable = Ledger.getTable(chatRoomName);
+    chatTable.set('messages', JSON.stringify<ChatMessage[]>([]));
 
-//     Notifier.sendJson<ClearChatOutput>({
-//         success: true,
-//         message: 'Done'
-//     });
+    Notifier.sendJson<ClearChatOutput>({
+        success: true,
+        message: 'Done'
+    });
 
-// };
+};
