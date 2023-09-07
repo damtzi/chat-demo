@@ -27,11 +27,11 @@ export function getChat(): void {
 /**
  * @transaction
  */
-export function writeMessage(message: string, sender: string): void {
+export function writeMessage(messageText: string, senderName: string): void {
 
     const newMessage: ChatMessage = {
-        sender: sender,
-        message: message,
+        sender: senderName,
+        message: messageText,
         timestamp: 0
     }
 
