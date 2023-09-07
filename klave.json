@@ -1,0 +1,13 @@
+{
+    "version": "1",
+    "name": "Subscription demo",
+    "slug": "chat-demo",
+    "branch": "*",
+    "applications": [
+        {
+            "name": "Hello World",
+            "version": "0.0.1",
+            "rootDir": "/apps/hello_world"
+        }
+    ]
+}
