@@ -1,5 +1,5 @@
-import { Notifier, JSON, Ledger, Subscription, Context } from '@klave/sdk';
-import { WriteMessageOutput, KVInput, Chat, ChatMessage } from './types';
+import { Notifier, JSON, Ledger, Subscription } from '@klave/sdk';
+import { WriteMessageOutput, ClearChatOutput, Chat, ChatMessage } from './types';
 
 const chatRoomName = 'demo_chat';
 
@@ -19,13 +19,7 @@ export function getChat(): void {
 
     const msgs = JSON.parse<ChatMessage[]>(chat);
     Notifier.sendJson<Chat>({
-        messages: msgs.map<ChatMessage>(function (m: ChatMessage) {
-            return {
-                sender: m.sender,
-                message: m.message,
-                timestamp: Context.get
-            }
-        })
+        messages: msgs
     });
 
 };
@@ -67,7 +61,7 @@ export function clearChat(): void {
     const chatTable = Ledger.getTable(chatRoomName);
     chatTable.set('messages', JSON.stringify<ChatMessage[]>([]));
 
-    Notifier.sendJson<WriteMessageOutput>({
+    Notifier.sendJson<ClearChatOutput>({
         success: true,
         message: 'Done'
     });

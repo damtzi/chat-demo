@@ -24,6 +24,13 @@ export class WriteMessageOutput {
 
 // @ts-ignore
 @serializable
+export class ClearChatOutput {
+    success!: boolean;
+    message!: string;
+}
+
+// @ts-ignore
+@serializable
 export class KVInput {
     key!: string;
     value!: string;
