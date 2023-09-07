@@ -23,7 +23,7 @@ export function getChat(): void {
             return {
                 sender: m.sender,
                 message: m.message,
-                timestamp: m.timestamp
+                timestamp: Context.get
             }
         })
     });
@@ -33,12 +33,11 @@ export function getChat(): void {
 /**
  * @transaction
  */
-export function writeMessage(): void {
+export function writeMessage(message: string, sender: string): void {
 
-    const senderName = Context.get('sender');
     const newMessage: ChatMessage = {
-        sender: senderName,
-        message: 'Hello there',
+        sender: sender,
+        message: message,
         timestamp: 0
     }
 
@@ -52,6 +51,21 @@ export function writeMessage(): void {
         existingMessages.push(newMessage);
         chatTable.set('messages', JSON.stringify<ChatMessage[]>(existingMessages));
     }
+
+    Notifier.sendJson<WriteMessageOutput>({
+        success: true,
+        message: 'Done'
+    });
+
+};
+
+/**
+ * @transaction
+ */
+export function clearChat(): void {
+
+    const chatTable = Ledger.getTable(chatRoomName);
+    chatTable.set('messages', JSON.stringify<ChatMessage[]>([]));
 
     Notifier.sendJson<WriteMessageOutput>({
         success: true,
