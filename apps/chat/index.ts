@@ -56,14 +56,14 @@ export function writeMessage(messageText: string, senderName: string): void {
 /**
  * @transaction
  */
-export function clearChat(): void {
+// export function clearChat(): void {
 
-    const chatTable = Ledger.getTable(chatRoomName);
-    chatTable.set('messages', JSON.stringify<ChatMessage[]>([]));
+//     const chatTable = Ledger.getTable(chatRoomName);
+//     chatTable.set('messages', JSON.stringify<ChatMessage[]>([]));
 
-    Notifier.sendJson<ClearChatOutput>({
-        success: true,
-        message: 'Done'
-    });
+//     Notifier.sendJson<ClearChatOutput>({
+//         success: true,
+//         message: 'Done'
+//     });
 
-};
+// };
