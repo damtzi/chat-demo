@@ -5,9 +5,9 @@
     "branch": "*",
     "applications": [
         {
-            "name": "Hello World",
+            "name": "Chat demo",
             "version": "0.0.1",
-            "rootDir": "/apps/hello_world"
+            "rootDir": "/apps/chat"
         }
     ]
 }
