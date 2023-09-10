@@ -1,4 +1,4 @@
-import { Notifier, JSON, Ledger, Subscription } from '@klave/sdk';
+import { Notifier, JSON, Ledger, Subscription, Context } from '@klave/sdk';
 import { WriteMessageOutput, ClearChatOutput, Chat, ChatMessage } from './types';
 
 const chatRoomName = 'demo_chat';
@@ -29,8 +29,9 @@ export function getChat(): void {
  */
 export function writeMessage(input: ChatMessage): void {
 
+    const clientId = Context.get('sender');
     const newMessage: ChatMessage = {
-        sender: input.sender,
+        sender: clientId,
         message: input.message,
         timestamp: input.timestamp
     }
