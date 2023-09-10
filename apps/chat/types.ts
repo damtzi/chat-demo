@@ -20,6 +20,7 @@ export class Chat {
 export class WriteMessageOutput {
     success!: boolean;
     message!: string;
+    clientId!: string;
 }
 
 // @ts-ignore

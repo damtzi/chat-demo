@@ -49,7 +49,8 @@ export function writeMessage(input: ChatMessage): void {
 
     Notifier.sendJson<WriteMessageOutput>({
         success: true,
-        message: 'Done'
+        message: 'Done',
+        clientId
     });
 
 };
