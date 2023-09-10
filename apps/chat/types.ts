@@ -6,7 +6,7 @@ import { JSON } from '@klave/sdk';
 export class ChatMessage {
     sender!: string;
     message!: string;
-    timestamp!: number;
+    timestamp!: string;
 }
 
 // @ts-ignore
